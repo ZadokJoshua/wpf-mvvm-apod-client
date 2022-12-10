@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.4.33122.133
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NASAAPOD.WPF", "NasaAPOD.WPF\NASAAPOD.WPF.csproj", "{218EF572-6BC4-4749-BD66-7D5C6857D163}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{218EF572-6BC4-4749-BD66-7D5C6857D163}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{218EF572-6BC4-4749-BD66-7D5C6857D163}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{218EF572-6BC4-4749-BD66-7D5C6857D163}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{218EF572-6BC4-4749-BD66-7D5C6857D163}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {70C5CAE4-2253-464C-8783-4478B1CE919C}
+	EndGlobalSection
+EndGlobal

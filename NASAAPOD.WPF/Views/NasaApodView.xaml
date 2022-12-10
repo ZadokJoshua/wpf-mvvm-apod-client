@@ -1,0 +1,104 @@
+﻿<UserControl xmlns:syncfusion="http://schemas.syncfusion.com/wpf"  
+             x:Class="NasaAPOD.WPF.Views.NasaApodView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:NasaAPOD.WPF.Views" 
+             xmlns:viewmodels="clr-namespace:NasaAPOD.WPF.ViewModels"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+    
+    <UserControl.DataContext>
+        <viewmodels:NasaApodViewModel/>
+    </UserControl.DataContext>
+
+    <Border>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <Grid Grid.Row="0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+                <syncfusion:SfTextBoxExt Grid.Column="0" 
+                                         Watermark="Your API Key"
+                                         FontSize="16"
+                                         VerticalContentAlignment="Center"
+                                         Text="{Binding ApiKey, UpdateSourceTrigger=PropertyChanged}"/>
+                
+                <Button Grid.Column="1" Content="Get APOD"
+                        Padding="15 5"
+                        FontSize="16"
+                        Margin="10 0 0 0"
+                        Command="{Binding GetAPODCommand}"
+                        IsEnabled="{Binding CanExecute}"
+                        Cursor="Hand"/>
+            </Grid>
+
+            <Grid Grid.Row="1"
+                  VerticalAlignment="Center"
+                  HorizontalAlignment="Center">
+                <Grid.Style>
+                    <Style TargetType="Grid">
+                        <Setter Property="Visibility" Value="Collapsed"/>
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding HasMadeCall}" Value="false">
+                                <Setter Property="Visibility" Value="Visible"/>
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </Grid.Style>
+                <TextBlock Text="Please add your API key and click the button."
+                           TextWrapping="Wrap"
+                           FontSize="30"/>
+            </Grid>
+
+            <Grid Grid.Row="1">
+                <Grid.Style>
+                    <Style TargetType="Grid">
+                        <Setter Property="Visibility" Value="Collapsed"/>
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding HasMadeCall}" Value="true">
+                                <Setter Property="Visibility" Value="Visible"/>
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </Grid.Style>
+                
+                <ScrollViewer VerticalScrollBarVisibility="Auto"
+                          Margin="0 10 0 0">
+                    <StackPanel>
+                        <Grid HorizontalAlignment="Left" Margin="0 5">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="Auto"/>
+                            </Grid.ColumnDefinitions>
+                            <TextBlock Text="Date: "/>
+                            <TextBlock Text="{Binding Date}" Grid.Column="1"/>
+                        </Grid>
+
+                        <Image Source="{Binding ImageUrl}" Margin="0 5"/>
+                        <TextBlock Text="{Binding Title}" FontSize="30" FontWeight="Bold" 
+                               TextWrapping="Wrap"/>
+                        <TextBlock Margin="0 5" Text="{Binding Explanation}"
+                               TextWrapping="Wrap"
+                               FontSize="16"/>
+
+                        <Grid HorizontalAlignment="Center" Margin="5">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                            </Grid.RowDefinitions>
+                            <TextBlock Text="Credit and Copyright" FontWeight="SemiBold" HorizontalAlignment="Center"/>
+                            <TextBlock Text="{Binding Copyright}" Grid.Row="1" HorizontalAlignment="Center"/>
+                        </Grid>
+                    </StackPanel>
+                </ScrollViewer>
+            </Grid>
+        </Grid>
+    </Border>
+</UserControl>
