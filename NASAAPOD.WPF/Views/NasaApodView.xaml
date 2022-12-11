@@ -6,6 +6,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:NasaAPOD.WPF.Views" 
              xmlns:viewmodels="clr-namespace:NasaAPOD.WPF.ViewModels"
+             xmlns:ui="http://schemas.lepo.co/wpfui/2022/xaml"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
     
@@ -24,11 +25,11 @@
                     <ColumnDefinition Width="*"/>
                     <ColumnDefinition Width="Auto"/>
                 </Grid.ColumnDefinitions>
-                <syncfusion:SfTextBoxExt Grid.Column="0" 
-                                         Watermark="Your API Key"
-                                         FontSize="16"
-                                         VerticalContentAlignment="Center"
-                                         Text="{Binding ApiKey, UpdateSourceTrigger=PropertyChanged}"/>
+                <ui:TextBox Grid.Column="0"
+                            PlaceholderText="Your API Key"
+                            FontSize="16"
+                            VerticalContentAlignment="Center"
+                            Text="{Binding ApiKey, UpdateSourceTrigger=PropertyChanged}"/>
                 
                 <Button Grid.Column="1" Content="Get APOD"
                         Padding="15 5"
@@ -37,6 +38,7 @@
                         Command="{Binding GetAPODCommand}"
                         IsEnabled="{Binding CanExecute}"
                         Cursor="Hand"/>
+                
             </Grid>
 
             <Grid Grid.Row="1"
