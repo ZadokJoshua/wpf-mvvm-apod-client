@@ -10,7 +10,7 @@
         Height="450" 
         Width="800"
         Background="#282828"
-        Foreground="#ebdbb2">
+        Foreground="White">
     <Grid>
         <views:NasaApodView Margin="20"/>
     </Grid>

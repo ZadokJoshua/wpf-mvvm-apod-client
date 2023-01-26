@@ -19,13 +19,20 @@ public class NasaApiService
     {
         string url = BASE_URL + string.Format(APOD_ENDPOINT, apiKey);
 
-        using (HttpClient httpClient = new())
+        try
         {
-            var response = await httpClient.GetAsync(url);
+            using (HttpClient httpClient = new())
+            {
+                var response = await httpClient.GetAsync(url);
 
-            string json = await response.Content.ReadAsStringAsync();
+                string json = await response.Content.ReadAsStringAsync();
 
-            astronomyPictureOfTheDay = JsonConvert.DeserializeObject<AstronomyPictureOfTheDay>(json);
+                astronomyPictureOfTheDay = JsonConvert.DeserializeObject<AstronomyPictureOfTheDay>(json);
+            }
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine(ex.Message);
         }
 
         return astronomyPictureOfTheDay;
